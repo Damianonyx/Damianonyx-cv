@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Abayomi Ekundayo — CV</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+
+/* ── THEME VARIABLES ── */
+[data-theme="light"]{
+  --bg:#ffffff;
+  --bg2:#f9f9f7;
+  --bg3:#f4f4f2;
+  --text:#111111;
+  --text2:#555555;
+  --muted:#aaaaaa;
+  --border:#111111;
+  --border-light:#dddddd;
+  --tag-bg:#111111;
+  --tag-color:#ffffff;
+  --card-bg:#f8f8f6;
+  --toggle-bg:#111;
+  --toggle-color:#fff;
+}
+[data-theme="dark"]{
+  --bg:#0a0a0a;
+  --bg2:#141414;
+  --bg3:#1a1a1a;
+  --text:#f5f0e8;
+  --text2:#b0a898;
+  --muted:#666666;
+  --border:#f5f0e8;
+  --border-light:#2a2a2a;
+  --tag-bg:#f5f0e8;
+  --tag-color:#0a0a0a;
+  --card-bg:#111111;
+  --toggle-bg:#f5f0e8;
+  --toggle-color:#0a0a0a;
+}
+
+body{background:var(--bg);color:var(--text);font-family:'Space Mono',monospace;min-height:100vh;transition:background .3s,color .3s}
+
+/* ── TOGGLE BUTTON ── */
+.theme-toggle{
+  position:fixed;top:24px;right:24px;z-index:100;
+  background:var(--toggle-bg);color:var(--toggle-color);
+  border:none;cursor:pointer;
+  width:44px;height:44px;border-radius:50%;
+  font-size:18px;
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:0 2px 12px rgba(0,0,0,.15);
+  transition:background .3s,color .3s,transform .2s;
+}
+.theme-toggle:hover{transform:scale(1.1)}
+
+.page{max-width:960px;margin:0 auto;padding:56px 44px 90px}
+.hdr{display:grid;grid-template-columns:1fr auto;gap:32px;border-bottom:3px solid var(--border);padding-bottom:44px;margin-bottom:52px;transition:border-color .3s}
+.alias{font-size:9px;letter-spacing:.3em;text-transform:uppercase;color:var(--muted);margin-bottom:10px;transition:color .3s}
+h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(3.8rem,9vw,6.8rem);line-height:.9;color:var(--text);margin-bottom:18px;transition:color .3s}
+.loc{font-size:9px;letter-spacing:.15em;color:var(--muted);margin-bottom:18px;transition:color .3s}
+.tags{display:flex;flex-wrap:wrap;gap:6px}
+.tag{font-size:8px;letter-spacing:.15em;text-transform:uppercase;padding:5px 12px;background:var(--tag-bg);color:var(--tag-color);transition:background .3s,color .3s}
+.hdr-right{display:flex;flex-direction:column;align-items:flex-end;gap:12px}
+.pfp{width:130px;height:160px;object-fit:cover;object-position:top center;border:2px solid var(--border);display:block;transition:border-color .3s}
+.contacts{display:flex;flex-direction:column;align-items:flex-end;gap:3px}
+.clabel{font-size:8px;letter-spacing:.25em;color:var(--muted);text-transform:uppercase;margin-top:8px;margin-bottom:1px;transition:color .3s}
+.contacts a{font-size:9px;color:var(--text2);text-decoration:none;text-align:right;transition:color .3s}
+.contacts a:hover{color:var(--text);text-decoration:underline}
+
+section{margin-bottom:48px}
+.slabel{font-size:8px;letter-spacing:.3em;text-transform:uppercase;font-weight:700;color:var(--text);display:flex;align-items:center;gap:12px;margin-bottom:20px;transition:color .3s}
+.slabel::after{content:'';flex:1;height:2px;background:var(--border);transition:background .3s}
+
+.bio{font-family:'Playfair Display',serif;font-size:clamp(1rem,1.9vw,1.15rem);line-height:1.82;font-style:italic;color:var(--text);border-left:4px solid var(--border);padding-left:22px;max-width:700px;transition:color .3s,border-color .3s}
+
+.role{border:1.5px solid var(--border);padding:22px 24px;margin-bottom:14px;transition:background .18s,border-color .3s}
+.role:hover{background:var(--bg3)}
+.role-hdr{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap;margin-bottom:12px}
+.role-title{font-family:'Playfair Display',serif;font-weight:700;font-size:1.02rem;color:var(--text);transition:color .3s}
+.role-org{font-size:8.5px;letter-spacing:.12em;color:var(--muted);margin-top:3px;transition:color .3s}
+.role-period{font-size:8.5px;background:var(--tag-bg);color:var(--tag-color);padding:4px 10px;white-space:nowrap;transition:background .3s,color .3s}
+.role ul{list-style:none;display:flex;flex-direction:column;gap:7px}
+.role li{font-size:.78rem;line-height:1.7;color:var(--text2);padding-left:16px;position:relative;transition:color .3s}
+.role li::before{content:'—';position:absolute;left:0;color:var(--text);font-weight:700;transition:color .3s}
+
+.work-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.work-card{display:flex;flex-direction:column;gap:3px;padding:14px 16px;border:1.5px solid var(--border);text-decoration:none;color:var(--text);background:var(--bg);transition:background .2s,color .2s,border-color .3s}
+.work-card:hover{background:var(--tag-bg);color:var(--tag-color)}
+.work-card:hover .wnum{opacity:.2}
+.work-card:hover .wlabel,.work-card:hover .warr{color:var(--tag-color)}
+.wnum{font-family:'Bebas Neue',sans-serif;font-size:2rem;line-height:1;color:var(--border-light);transition:color .3s}
+.wlabel{font-size:8.5px;letter-spacing:.1em;color:var(--muted);text-transform:uppercase;margin-top:2px;transition:color .3s}
+.warr{font-size:.8rem;font-weight:700;margin-top:6px}
+
+.skills-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(185px,1fr));gap:7px}
+.skill{font-size:9px;padding:9px 11px;border:1px solid var(--border-light);background:var(--bg2);color:var(--text2);transition:background .18s,color .18s,border-color .18s}
+.skill:hover{background:var(--tag-bg);color:var(--tag-color);border-color:var(--tag-bg)}
+.skill::before{content:'# ';color:var(--muted)}
+.skill:hover::before{color:var(--muted)}
+
+.testi-box{border:1.5px solid var(--border);padding:28px 32px;background:var(--card-bg);position:relative;transition:background .3s,border-color .3s}
+.testi-box::before{content:'C';font-family:'Playfair Display',serif;font-size:130px;color:var(--text);opacity:.06;position:absolute;top:-28px;left:14px;line-height:1;pointer-events:none;transition:color .3s}
+.testi-text{font-family:'Playfair Display',serif;font-size:clamp(.98rem,1.7vw,1.1rem);line-height:1.85;font-style:italic;color:var(--text);margin-bottom:18px;position:relative;z-index:1;transition:color .3s}
+.testi-author{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.t-avatar{width:34px;height:34px;border-radius:50%;background:var(--tag-bg);color:var(--tag-color);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:11px;flex-shrink:0;transition:background .3s,color .3s}
+.t-name{font-weight:700;font-size:.8rem;color:var(--text);transition:color .3s}
+.t-handle{font-size:8.5px;color:var(--muted);margin-top:2px;transition:color .3s}
+.t-link{margin-left:auto;font-size:8.5px;color:var(--text);text-decoration:none;border:1.5px solid var(--border);padding:5px 12px;transition:background .2s,color .2s,border-color .3s}
+.t-link:hover{background:var(--tag-bg);color:var(--tag-color)}
+
+.edu-box{border:1.5px solid var(--border);padding:18px 24px;display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;background:var(--bg2);transition:background .3s,border-color .3s}
+.edu-deg{font-family:'Playfair Display',serif;font-weight:700;font-size:.98rem;color:var(--text);transition:color .3s}
+.edu-inst{font-size:8.5px;letter-spacing:.1em;color:var(--muted);margin-top:4px;transition:color .3s}
+.edu-yr{font-family:'Bebas Neue',sans-serif;font-size:1.2rem;background:var(--tag-bg);color:var(--tag-color);padding:4px 14px;transition:background .3s,color .3s}
+
+.svc{display:flex;gap:16px;align-items:flex-start;padding:12px 14px;border-bottom:1px solid var(--border-light);transition:background .18s,border-color .3s}
+.svc:first-child{border-top:1px solid var(--border-light)}
+.svc:hover{background:var(--bg3)}
+.svc-num{font-family:'Bebas Neue',sans-serif;font-size:1.4rem;color:var(--border-light);min-width:26px;line-height:1.1;transition:color .3s}
+.svc-txt{font-size:.78rem;color:var(--text2);line-height:1.6;padding-top:3px;transition:color .3s}
+
+.links-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:7px}
+.lnk{display:flex;align-items:center;gap:10px;padding:11px 14px;border:1.5px solid var(--border);text-decoration:none;color:var(--text);background:var(--bg);transition:background .2s,color .2s,border-color .3s}
+.lnk:hover{background:var(--tag-bg);color:var(--tag-color)}
+.lnk:hover .lsub{color:var(--muted)}
+.lnk:hover .licon{background:var(--bg);color:var(--text)}
+.licon{width:27px;height:27px;border-radius:50%;background:var(--tag-bg);color:var(--tag-color);display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;flex-shrink:0;transition:background .3s,color .3s}
+.llabel{font-size:.77rem;font-weight:700}
+.lsub{font-size:8px;color:var(--muted);margin-top:2px;transition:color .3s}
+
+.footer{border-top:3px solid var(--border);padding-top:24px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;transition:border-color .3s}
+.fname{font-family:'Bebas Neue',sans-serif;font-size:1.3rem;color:var(--text);transition:color .3s}
+.fmeta{font-size:8.5px;color:var(--muted);letter-spacing:.1em;transition:color .3s}
+
+@media(max-width:620px){
+  .page{padding:28px 18px 60px}
+  .hdr{grid-template-columns:1fr}
+  .hdr-right{align-items:flex-start;flex-direction:row;flex-wrap:wrap}
+  .work-grid{grid-template-columns:1fr}
+  .theme-toggle{top:16px;right:16px}
+}
+</style>
+</head>
+<body>
+
+<!-- TOGGLE BUTTON -->
+<button class="theme-toggle" onclick="toggleTheme()" title="Toggle dark/light mode">🌙</button>
+
+<div class="page">
+
+<header class="hdr">
+  <div>
+    <p class="alias">Alias: Damianonyx</p>
+    <h1>Abayomi<br/>Ekundayo</h1>
+    <p class="loc">&#128205; Lagos, Nigeria</p>
+    <div class="tags">
+      <span class="tag">Technical Writer</span>
+      <span class="tag">Freelance Copywriter</span>
+      <span class="tag">Ghost Writer</span>
+      <span class="tag">Content Strategist</span>
+    </div>
+  </div>
+  <div class="hdr-right">
+    <img class="pfp" src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBAUEBAYFBQUGBgYHCQ4JCQgICRINDQoOFRIWFhUSFBQXGiEcFxgfGRQUHScdHyIjJSUlFhwpLCgkKyEkJST/2wBDAQYGBgkICREJCREkGBQYJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCT/wAARCAD6APoDASIAAhEBAxEB/8QAHQABAAIBBQEAAAAAAAAAAAAAAAcIBgECBAUJA//EAEQQAAEDAwIEAwUEBgcIAwAAAAEAAgMEBREGBxIhMUEIE1EUIjJhgRVSkaEjYnFyksEXM0JDgqKxFhg3U3N0o7OywtH/xAAUAQEAAAAAAAAAAAAAAAAAAAAA/8QAFBEBAAAAAAAAAAAAAAAAAAAAAP/aAAwDAQACEQMRAD8AtQiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICLGrXrWmumu75pONgbNZ6WlnkcTzeZuM4A9GgM/jWSoNk00VNC+aaRkUUbS973uDWtaOZJJ6BIZo6mFk0MjZIpGhzHtOQ4HoQq/wC4espdxt7rJtTRPzY6OcVN6aD7tWY2+aYXerAA0Ed3O5/CFYIAAAAAAdgg1REQEREBERAREQEREBERAREQEREBERAREQEREBERARdRetXWLTlZR0l5udPbn1of5D6k+XE8txlvmH3Q7mMNJyeeAcFc6muVFWtDqasp52u6GOVrgfwKDkovhUV1LSML6iphha3q6SQNA/EqOdb+IzbvQ5dDPeW3SsAz7LbMTuH7XA8Dfq7PyQQXutrm57QeJyr1JA2SWlq4KY1FPnHtFMY2tc0fMOjJB7Fo+atPpLWFl1xYae+2KujqqKYZ4hydG4dWPHVrh3B/0VF9+d3bbu/e7fcqGxzWySjhdTukmnD3Ts4uJuQAA3BLu5+JYnofcTUu3dyNfp65SUxfymgPvQzt+69h5OHz6jsQglvw339l28RFfcat/FNdG18jCT1e53H/APEOVjteb+6C28rzbbtdXzXBvx0lFEZpI/3scmn5E5+SoNYNS3LS1+p77Z5vZK6me58L2jPASCO/XkSOa5Vk1BbrbVPuFzssWoK18hkIuM8nkknnxODC1z3E5Jy7HyKC7ulvE7tpqm4R2+O8TW6olcGxi4QGFryeg48lo+pCldUjsfiG0vUU7bbqXaPSs9uI4XfZlK2J7B6gOB5/4gfmrZ7c650xrvTcFbparEtHC1sJgecS05AwGPaSSDgdeeexKDKUREBERAREQEREBERAREQEREBERAREQEREBERB19+sFr1Paai03mhhrqGpbwywTNy1w/kR1BHMHoqWb0bDW3QVM/UeltV22ptDpHsbSz1jBUse12HMjIP6XhPIgYcO4PVTjvl4kaTb+aTTemYo7nqRw4Xn4oqInpxAfFJ+p27+hp/q63ar9qN91Tb7jTzXWWSYT1lOYfaH8i9zQQM9RnAxzCDopJpJTmSRzz+sSVsWiICIu2ummq6zWq3XCvaIPtJrpaaF3xuhBx5hHZpOQPXhJ6YyHUoiIPpBUTUszJ4JXxSsPE17HFrmn1BCmLbjxGS6NvAulz0zQ19Y6LyJ6yid7HNUs7ec1oMchBwQ7hDuXNxUMoguFQeMymu9XFQ2vQN2ra2dwZFTw1TXOkd6ABhP5KZ9D3PWd6hkr9U2S32GKRo9nt8c5qKhhzzdK/k0csYaAT6nsq9+D/XulqeWXStVaqCgv83E6muLWfpK5vUxOceYcOZAGAQOmRztcgIiICIiAiIgIiICIiAiIgIiICIiAiIgLq9S0d1uFmqKOy18durJwI21j2cZp2k4c9reheBnhB5ZwTyGD2iIML0JtHpLbuIyWu3tluD8unudYfNqpnHmXOkPTPUhuAqN71bg1O5G4Nyuz5nPoopHU1CzPKOnYSG4+bubj83FXR3r3dsW2OmqhtZKKi61kL2UlBG/EkhII43fdYPvfLAyV56FBotzWue4Na0uc44AHUlbVn+kNGOi0Vetc1tQ+lZSMMFsa0gOqKkkNJGQctaHduee4wUHeeHzab+kLUj6u4Qeba7c9odGfhqJuoYT90AcTvlgd11G/t4bdt1L1FC8Op7dILdDjoBEOE4x24uI/VWS2ogOz+nrdFJNS11qeGfab2NaJaGWTHFKHN+OMOIa4OHE1oBBIBCqtfbNPXWCv1pU8YNde5KaPPQnhdI8/i5o/FBiSIt8sT4ZHRvaWub1BGCEGxERB96KtqLdWQVlHNJBU08jZYpYzhzHtOQ4HsQQvQbYndWPdbRMVwnLGXajIp7hE3kPMxkPA7NeOY9DxDsvPmhlhgrYJaiETwska6SInAe0Hm36jKtDsrp+t2h3+n0qJnz2e/2981BO7kKiIDzYnH9Zoa9p+ZPYhBatERAREQEREBERAREQEREBERAREQEREBcevhqKijmhpao0k724ZOIw8xn1DTyJ/byXIRBHf9Au38tVPcbxaHXy4Tu456661D55ZD6nJDQAOga0AdAFQ680pv8AfL/cLNbmQW6GWWr8qFuI6aAyYaPkBxNAXpRepGw2euke4NaynkcXE4wAw81VG1beUmjNvrBQXMmldqa31FTcpsnPvsxC0gc8R8cbiOxLigrlarbUXi50ltpW8dRVTMgjb6ucQB+ZVhd0NubnbbXarXt/e7ldLbTtip6iyuld5ona50nmtieAHMcWk+6CAW98rBNrtHR124OmKavhMbfKqTMGOLHCWF0oyHDmHA8BBHoFai6aIu1LPE+5WeDVDKUObT1kQjE7WuxnjheQ3i5DLmHnj4W9EEZbWaW3LutJWXXVlqhiomAUrYblD7JVTsfkP4Q0AFoDuj2+9nkRhYNf6Gzf7uFHZoqhxvVuucla6EQSHLRLLG4cXDw54XA9ejVYq32K/wBXIY7dZ6m0sl4Q6puMjeCENGAWQte4udg8h7oPcrCd97HZtvdpWactlBSVN4u9W6mpqmWJhqS0vdLJI5+M5DeRd0HF2CCodhtb75fKC1sJa6sqI4A4DPDxOAz9M5WRbuWqOz7gXaCCsZXQPe2aOoY1jRIHNBzhnujnkYHTC0vGhLtpncA6Yp5uO4QuYYZWSCEPcYw8FriQBzyAchbL3b9R3CrnZqGK5trqeldwm4RvEnDH7xbl4ycN4vVBiSItSCOvdB9aWlmrJxDTxulkIJDW9SACT+QKvdtra3610dtTqssjkqrNFIyWZ5w7yjTywOx6kvbGcfLKpToO6w2PWdkuNSW+zQVsLp+LoYuIB4/hLlf3ZPT1VpTbKzWWsY9k1J57cP6lpnkLT9Wlp+qDOEREBERAREQEREBERAREQEREBERAREQEREGyaGOoifDNGySKRpY9jxlrmkYIIPULDdzdJR3u1UdwhgoZKiySmqjiqniOKWLgLZYy/owFvME8gWNzyys1WIbiaEqNw6Kns096nt9je4uuFPSsxNWgY4Y/MJ9xmclwAJPIZAzkIG2psFi1FfYK/S9xdWut08tZHHKcTR08sTopY5M9XMd5DgRkOBOCTlWjpJTPSwyuaWl7GuIIwRyVZbboCbbDe/VF4srG2+02ixi6UlIHFsdVAAxssTnHP3JDk8w7gJ5KxOltT2zWNipL3aJzNSVTA9vEOF7Djm1w7OHcIOfWU3tlJLTiaaAyNLRLC7hez5tPquNWWuO4Vh9qpaGopXUz4XebFxSnj5ObnpwFvUd11uptKVF9f5tNe7hQvDQPKY8mB2DnJaMHOcc8rn6dprrR2xlPd54KiojJa2aIuPmM7F3Fz4vXsgrhvPs9fNOahsWs7PE6726zzQslABfVR0zZBwse3+9a0Et4vi4SA4HBccvumkje7Yyz0Fl1LI2OpE0MVSyWOCH3jxNHnEMYwsc9mGg4a7ABU5rHdXagbbom2ykmxdK1hEXD1gZ0dMfQNzy9XYHrgKA1u3FZR7kVei3zQOmpql8LnwyeY0gDiw045nh9QMYOcYK4utrHTU+qNQR2aNv2ZbZgxha7IDMhjeffJ79+qn6HSFu1Fp+00VlbPFemVIroKrJPBUObxmEk+9K57OEvI6fG4gYao+290JctxLbqy00dHNBca6+UMD/MYT7DEDUPldJnoG8LRjqXADug++2Hh3rNzNrrlqCjkFNdmVhbbxK7EdVGxv6RpPbLjgO7FpB5HIsfsTuBUXOyw6M1TDNbNXWWEQT0dW3gkqYm8mTMz8YwACRnmM9CFIel9OW/SGnrfYbXF5VHQQthjb3OOrj6knJJ9SUvumLNqanbBd7dT1jY3B0bnt9+Jw7seMOafmCEHaIgGBhEBERAREQEREBERAREQEREBERAREQEREBETKCP96ILhetLf7J2ZrRc9Rv9gEpbkU9N8U8rj90MGPmXtHUhYnoV1Zpqx2a52VgnL7fTR1dFI/gbVtbGGteD0bKAAATycPdPRpEvXu4wWm0VlfUysihp4XyOe48gACo70lZa11itdEymf5kFJDHIHcgxwYMgn5HKDLY9xdOC3+21labcA8RvirGGOSN5GeEjv06jIPYlcSXdKxFubfBdrm7OMUtBIB/HIGM/Ncyj0gG4dVVTyfuRcgPqu3gs9BTEGOmj4vvPHEfxKCBN2PFTVaJq32W2aWey6OibK2SvqGOZEHA8JLIicnvjiHULi7g6a3RsGkaXUlLM6+XCqY2a7xULZIZ2ksB58Dj5kbcloDA3hHMDmSsa1Xt7Saq1xrO8ayrGWi3XESVFpvrwTFSTUsxg9nk7ZLW/B1OAW8wrSabvFJfrHRXGirqOvhmiafaKN/FE92MO4T6ZzyPMd0GK7Taa09R2Gnvtpqm3OS4RB3thYGhjeQMUbB/VtBbgt5nLQCTgY7W3aO+ydwLpqOhFNBS3ahijrImgh8tTE93BL6fA8tPrgLKAAOQGEQEREBERAREQEREBERAREQEREBERAREQEREBEWGbo7rWDamwm5XeXzaiTLaShjcPNqXjsPRo7uPIfM4BDJL9eKfT9lr7vVuDaeigfUSEnHJrScfXGF52Tbua3Op6vUkGpbnS19VKZXmGocGczybw54S0DAAIxgLl7nb0as3TrCbvWeTbmPLoLdTktgj58iR/bd+s76Y6LA0F1NndwNP7pR0DdUazkuV+h4XC1VMbaOIyjo5kbfdlcDzByTnmA3kFPkUUcMYjiY1jG9GtGAF5Yse5jg5ri1wOQQeYKlzQHig17ohkdLUVbL9b2chBcSXPYPRso94fXI+SC+qKsNL44La6Nvtei6uOTHPyq5rh+bAuJdfHAPLc21aL9/HJ9VXcgf3Ws5/ig3eMO1abtVupHw3Wup7tXVRqvsmGXNNKccL6l8Z+B2AG8Q+I55fEV0/g23AZbL1ctI3G5Qw01eGz0UMzscVQDhzWHplzccu/CMKBNX6uu+udQVd+vlUaitqnZccYawDoxo7NA5ALqGPdE9r2OLXNIIcDgg+qD1RRVR2R8V4poqbTu4Esj2gtigvPUtHQCcdT++PqOpVq4ZoqmFk0MjJYpGh7HscC1zSMggjqD6oN6IiAiIgIiICIiAiIgIiICIiAiIgIiICIuvv99t+mLLW3m61DaehoonTTSHs0enqT0A7kgIOj3M3Jsu1+mZr3d5OJ3NlNStcBJVS45Mb/AKk9hz+R8+te67vO4upaq/3ufzJ5jhkbc+XBGPhjYOzR+ZyTzJXa7uboXLdbVs94qy+GjjzFQ0hdkU8WeQ/ePVx7n5ALCEBcm322uu1SKa30dTWTkFwip4nSPIHU4AJ5LjLJtu9SUOk9TRXWvjqHxMgmiBp2tdIx0kbmB7eIgZbxcQ59QOnVBj1RTTUk8lPUQyQzRuLXxyNLXNI6gg8wV8lLL9f6BvT46u+2Osqa/jY2aeeMSukjjpjCzLhI0kktiec9weZ7/T7c2mrXOgkpK2koRI+ZtO2KXhLzExgPKQ4IPEc/IdkERIpRlh2jmhL2VFXDK2lYzy2mYB0xzl+XNPQ8PLOOEu7gLm1OhNva+2XG72i5VbqKlmijaZKvy2nL4g4cT4hz4XPOPkOWMoIhRS9tnovRF43Dv9kmu1NNTx0Mv2JPVOD46qf3eFxaOHidwlzhGeh5HJbzwDWlris96moQaQzwPkjm9kdxREtkc0OafQtAPQdegzhB0Cnrw5eIKo0LXwaX1JVOk05UP4YppDk2957g/wDLJ6jt1HcGBUQeqLHtkY17HBzXDIIOQR6rcq2eEjeCW+0DtB3qo46ugi8y3Svd70sA6xc+pZ1H6v7qsmgIiICIiAiIgIiICIiAiIgIiICIiAqteMzcfy4aDQVDN70nDW3DhP8AZH9VGfrl5HyarPV1ZBbqKoraqQR09PG6WV56NY0Ek/gCvNLXmq6rXGsLtqKrLvMr6h0rWn+wzoxn+FoaPog6BERAREQEREBa8RxjJx1WiINVoiICIiDtdLajr9Iait9+tknl1lBM2aM9jjq0/IjII9CV6VaX1BSar07bb7QnNNcKZlRGD1aHDPCfmDkH9i8wFdfwdauN626qrDM8umslUWsBP9zLl7f83mD8EE+IiICIiAiIgIiICIiAiIgIiICIiCJ/FDqV2nNnrs2J/BNcnR29hz2ecvH8DXj6qgqt143br5WndM2oOGKirmqSP+mwNH/sKqIgIiICIiAiIgIiICIiAiIgKzvgfB+2NVnzWgez036PPN3vv979g6fVViVg/BXV+VuRdqck4mtDyB2y2aP/APSgugiIgIiICIiAiIgIiICIiAiIgIiHogph40b37buFa7S12Y7fbg8j0fK9xP8AlaxV7UneJS7fa+9OpJA4FlPLHStx28uNrT+YKjFAREQEREBERAREQEREBERAU5+Dqby925G5H6S11Df80Z/koMUw+E+rFNvTaoyce0U9TF/4nO/+qC+SIiAiIgIiICIiAiIgIiICIiAiLgX+tFtsdxrScCmpZZs/usJ/kg819dXQ3vWl+uZcXe13ConB+TpHEfkujW5xLnEk5J5kragIiICIiAiIgIiICIiAiIgKRvDxVex70aVlz8VWYv443t/mo5WTbY3L7H3F0zXnAbBdKZ7s/d81ufyyg9LB0C1REBERAREQEREBERAREQEREBYdvHcfsrarVlUDgi11DGn5uYWj83LMVFnidqnUuyOoywgGQU8X0dPGD+SCgB6rRanqtEBERAREQEREBERAREQEREBfSCZ9PPHNGcPjcHtPzByvmtR1Qeo9prmXS10dfGQ5lTBHM0joQ5od/NctYRslc/tbaXSdUXcR+zYYifUxjgP5tWboCIiAiIgIiICIiAiIgIiICh7xYuxsrdRnrUUo/b+laphUN+LP/gxcf+6pf/YEFEEREBERAREQEREBERAREQEREBERBeHweXeW47SupJXEi33Genj+THBsmPxe5TkoF8GQA2qriAMm8TZPr+iiU9ICIiAiIgIiICIiD//Z" alt="Damianonyx"/>
+    <div class="contacts">
+      <p class="clabel">Contact</p>
+      <a href="mailto:Abayomiekundayo9568@gmail.com">Abayomiekundayo9568@gmail.com</a>
+      <a href="mailto:Damianonyx83@gmail.com">Damianonyx83@gmail.com</a>
+      <p class="clabel">Profiles</p>
+      <a href="https://x.com/GeekyDamian" target="_blank">&#120143; @GeekyDamian</a>
+      <a href="https://medium.com/@damianonyx" target="_blank">Medium @damianonyx</a>
+      <a href="https://open.substack.com/pub/geekydamian" target="_blank">Substack: GeekyDamian</a>
+      <a href="https://www.linkedin.com/in/ekundayo-abayomi-9a54a93b7" target="_blank">LinkedIn</a>
+    </div>
+  </div>
+</header>
+
+<section>
+  <p class="slabel">About</p>
+  <p class="bio">I am a Web3 Technical Writer and Content Strategist focused on helping crypto, DeFi, and blockchain projects explain their products clearly through educational content, storytelling, and community-driven narratives. I create research-based tweets, articles, project breakdowns, campaign content, and ghostwritten pieces that simplify complex Web3 ideas for wider audiences. My background in Economics and Education strengthens my ability to explain technical concepts in a simple, structured, and relatable way.</p>
+</section>
+
+<section>
+  <p class="slabel">Experience</p>
+  <div class="role">
+    <div class="role-hdr">
+      <div><p class="role-title">Personal Brand &amp; Portfolio</p><p class="role-org">Independent / Self-Directed</p></div>
+      <span class="role-period">2024 &mdash; Present</span>
+    </div>
+    <ul>
+      <li>Researched and wrote educational content on Web3 concepts including wallets, CEXs, DEXs, airdrops, DeFi strategies, validators, liquidity, stablecoins, and blockchain infrastructure.</li>
+      <li>Created beginner-friendly explainers to help new users understand crypto and Web3 without overwhelming technical language.</li>
+      <li>Analyzed project documents, litepapers, blogs, and whitepapers to extract useful insights for content creation.</li>
+      <li>Produced narrative-led content combining research, storytelling, market context, and simplified technical explanation.</li>
+      <li>Built a distinctive writing style focused on clarity, education, emotional rhythm, and authentic Web3 storytelling.</li>
+    </ul>
+  </div>
+  <div class="role">
+    <div class="role-hdr">
+      <div><p class="role-title">Ghostwriter &amp; Crypto Content Writer</p><p class="role-org">Freelance / Client-Based</p></div>
+      <span class="role-period">2024 &mdash; Present</span>
+    </div>
+    <ul>
+      <li>Wrote social media content, tweets, threads, captions, and promotional posts for Web3 creators, founders, projects, and communities.</li>
+      <li>Created founder-style and project-style content designed to sound natural, human, and aligned with each client's voice.</li>
+      <li>Developed content for project announcements, feature explainers, campaign promotions, and community engagement.</li>
+      <li>Produced persuasive but educational copy that explained product value, project vision, and user benefits.</li>
+      <li>Balanced storytelling, technical explanation, and marketing angles to make crypto content more relatable and readable.</li>
+    </ul>
+  </div>
+  <div class="role">
+    <div class="role-hdr">
+      <div><p class="role-title">Community Content &amp; Campaign Support</p><p class="role-org">Freelance / Web3 Projects</p></div>
+      <span class="role-period">2024 &mdash; Present</span>
+    </div>
+    <ul>
+      <li>Supported Web3 project visibility through content creation, community engagement, quote tweet angles, raid templates, and awareness posts.</li>
+      <li>Created community-friendly messaging to help projects maintain activity and visibility on X.</li>
+      <li>Helped break down project updates into simpler content for community members and potential users.</li>
+      <li>Contributed to narrative building around early-stage crypto projects, memecoin communities, and token-based campaigns.</li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <p class="slabel">Work Samples</p>
+  <div class="work-grid">
+    <a class="work-card" href="https://x.com/GeekyDamian/status/2052110797388587073" target="_blank">
+      <span class="wnum">01</span><span class="wlabel">X Article / Thread</span><span class="warr">&#8599; View on X</span>
+    </a>
+    <a class="work-card" href="https://x.com/GeekyDamian/status/2050628435509412314" target="_blank">
+      <span class="wnum">02</span><span class="wlabel">X Article / Thread</span><span class="warr">&#8599; View on X</span>
+    </a>
+    <a class="work-card" href="https://x.com/GeekyDamian/status/2053500751226212748" target="_blank">
+      <span class="wnum">03</span><span class="wlabel">X Article / Thread</span><span class="warr">&#8599; View on X</span>
+    </a>
+    <a class="work-card" href="https://x.com/GeekyDamian/status/2053577349799596486" target="_blank">
+      <span class="wnum">04</span><span class="wlabel">X Article / Thread</span><span class="warr">&#8599; View on X</span>
+    </a>
+    <a class="work-card" href="https://x.com/GeekyDamian/status/2054892094037135788" target="_blank">
+      <span class="wnum">05</span><span class="wlabel">X Article &mdash; Cheetogenesis</span><span class="warr">&#8599; View on X</span>
+    </a>
+  </div>
+</section>
+
+<section>
+  <p class="slabel">Skills</p>
+  <div class="skills-grid">
+    <div class="skill">Web3 Technical Writing</div>
+    <div class="skill">Content Strategy</div>
+    <div class="skill">Ghostwriting</div>
+    <div class="skill">Copywriting</div>
+    <div class="skill">DeFi &amp; Blockchain Research</div>
+    <div class="skill">Whitepaper &amp; Litepaper Analysis</div>
+    <div class="skill">Twitter / X Threads</div>
+    <div class="skill">Community Messaging</div>
+    <div class="skill">Narrative Building</div>
+    <div class="skill">Educational Content</div>
+    <div class="skill">Campaign Copy</div>
+    <div class="skill">Voice &amp; Tone Matching</div>
+    <div class="skill">Substack &amp; Medium Publishing</div>
+    <div class="skill">Economics &amp; Financial Context</div>
+    <div class="skill">English (Fluent)</div>
+  </div>
+</section>
+
+<section>
+  <p class="slabel">Client Testimonial</p>
+  <div class="testi-box">
+    <p class="testi-text">"This is by the most incredible article I've ever seen written about any project let alone my own and I am humbled at this dude's attention to detail and thoroughness, from the bottom of my heart D, thank you."</p>
+    <div class="testi-author">
+      <div class="t-avatar">CT</div>
+      <div>
+        <p class="t-name">mf cheeto tiger AGI type shit</p>
+        <p class="t-handle">@MfCheetoTiger &middot; X &middot; May 14, 2026 &middot; 1,383 views</p>
+      </div>
+      <a class="t-link" href="https://x.com/MfCheetoTiger/status/2054893231498772613" target="_blank">&#8599; View Tweet</a>
+    </div>
+  </div>
+</section>
+
+<section>
+  <p class="slabel">Education</p>
+  <div class="edu-box">
+    <div><p class="edu-deg">B.Sc. (Ed) Economics</p><p class="edu-inst">University of Benin, Nigeria</p></div>
+    <span class="edu-yr">Current</span>
+  </div>
+</section>
+
+<section>
+  <p class="slabel">Services Offered</p>
+  <div class="svc"><span class="svc-num">01</span><span class="svc-txt">Web3 &amp; Blockchain Technical Writing &mdash; articles, explainers, project breakdowns, whitepapers</span></div>
+  <div class="svc"><span class="svc-num">02</span><span class="svc-txt">Ghostwriting &mdash; founder-voice content, threads, thought leadership pieces</span></div>
+  <div class="svc"><span class="svc-num">03</span><span class="svc-txt">Copywriting &amp; Campaign Content &mdash; launch copy, promotional posts, community messaging</span></div>
+  <div class="svc"><span class="svc-num">04</span><span class="svc-txt">Content Strategy &mdash; narrative planning, editorial direction, audience growth</span></div>
+  <div class="svc"><span class="svc-num">05</span><span class="svc-txt">Community Engagement Content &mdash; raid templates, awareness posts, X community support</span></div>
+  <div class="svc"><span class="svc-num">06</span><span class="svc-txt">Sunday School Teaching &mdash; volunteer community education, Faith Community</span></div>
+</section>
+
+<section>
+  <p class="slabel">Find Me Online</p>
+  <div class="links-grid">
+    <a class="lnk" href="https://x.com/GeekyDamian" target="_blank">
+      <div class="licon">X</div><div><div class="llabel">Twitter / X</div><div class="lsub">@GeekyDamian</div></div>
+    </a>
+    <a class="lnk" href="https://medium.com/@damianonyx" target="_blank">
+      <div class="licon">M</div><div><div class="llabel">Medium</div><div class="lsub">@damianonyx</div></div>
+    </a>
+    <a class="lnk" href="https://open.substack.com/pub/geekydamian" target="_blank">
+      <div class="licon">S</div><div><div class="llabel">Substack</div><div class="lsub">GeekyDamian</div></div>
+    </a>
+    <a class="lnk" href="https://www.linkedin.com/in/ekundayo-abayomi-9a54a93b7" target="_blank">
+      <div class="licon">in</div><div><div class="llabel">LinkedIn</div><div class="lsub">Ekundayo Abayomi</div></div>
+    </a>
+    <a class="lnk" href="mailto:Abayomiekundayo9568@gmail.com">
+      <div class="licon">@</div><div><div class="llabel">Gmail (Primary)</div><div class="lsub">Abayomiekundayo9568</div></div>
+    </a>
+    <a class="lnk" href="mailto:Damianonyx83@gmail.com">
+      <div class="licon">@</div><div><div class="llabel">Gmail (Brand)</div><div class="lsub">Damianonyx83</div></div>
+    </a>
+    <a class="lnk" href="https://t.me/CallmheDamian" target="_blank">
+      <div class="licon">TG</div><div><div class="llabel">Telegram</div><div class="lsub">@CallmheDamian</div></div>
+    </a>
+    <a class="lnk" href="https://t.me/Damianonyx" target="_blank">
+      <div class="licon">TG</div><div><div class="llabel">TG Community</div><div class="lsub">@Damianonyx</div></div>
+    </a>
+  </div>
+</section>
+
+<footer class="footer">
+  <span class="fname">Abayomi Ekundayo &middot; Damianonyx</span>
+  <span class="fmeta">Lagos, Nigeria &middot; 2026</span>
+</footer>
+
+</div>
+
+<script>
+function toggleTheme() {
+  const html = document.documentElement;
+  const btn = document.querySelector('.theme-toggle');
+  const isDark = html.getAttribute('data-theme') === 'dark';
+  html.setAttribute('data-theme', isDark ? 'light' : 'dark');
+  btn.textContent = isDark ? '🌙' : '☀️';
+  localStorage.setItem('theme', isDark ? 'light' : 'dark');
+}
+
+// Remember preference on reload
+(function() {
+  const saved = localStorage.getItem('theme') || 'light';
+  document.documentElement.setAttribute('data-theme', saved);
+  document.querySelector('.theme-toggle').textContent = saved === 'dark' ? '☀️' : '🌙';
+})();
+</script>
+</body>
+</html>
